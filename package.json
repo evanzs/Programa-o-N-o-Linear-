@@ -1,0 +1,28 @@
+{
+  "name": "pnl",
+  "version": "1.0.0",
+  "description": "Programação Não Linear",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanzs/Programa-o-N-o-Linear-.git"
+  },
+  "keywords": [
+    "Programação",
+    "Não",
+    "Linear"
+  ],
+  "author": "Evandro Fernandes Barreto",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/evanzs/Programa-o-N-o-Linear-/issues"
+  },
+  "homepage": "https://github.com/evanzs/Programa-o-N-o-Linear-#readme",
+  "dependencies": {
+    "@types/mathjs": "^6.0.5",
+    "mathjs": "^7.0.1"
+  }
+}
