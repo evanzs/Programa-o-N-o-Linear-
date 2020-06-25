@@ -1,36 +1,24 @@
 
 
-function pegaString ()
-{
-var funcao = document.getElementById("InputFunc").value;
-var   value = math.derivative(funcao,'x');
-
-var result = document.getElementById("resultado");
-result.value  = value;
-
-}
-
-function FXinP ()
-{
-    var funcao = document.getElementById("InputFunc").value;
-    var p1  = document.getElementById("Inputp1").value;
-    var p2 = document.getElementById("Inputp2").value;
-    var result = document.getElementById("ResultFxinP");
-   let scope =
-   {
-       x : p1,
-       y : p2
-   }
-
-   result.value = math.evaluate(funcao,scope);
-
-
-}
-
-<!-- Função Responsavel por pegar os inputs e transformar em matrizes -->
-StringToMatrices ()
-{
 
 
 
+
+
+
+function manipula ()
+{    
+   var funcao = document.getElementById ("InputFuncao").value;
+    var x1 = 2;
+    var x2 = 2;
+    let scope = 
+    {
+        x : 'x1',
+        y : x2
+
+    }
+
+   const result = nerdamer('x*y',scope ).toString()
+  
+  console.log(nerdamer.diff(' x^2*x').toString());
 }
