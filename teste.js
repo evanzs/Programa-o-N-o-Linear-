@@ -10,10 +10,7 @@ function MNewton (fx)
     
      //derivando a função
      fx  = nerdamer.diff(fx,'L');
-     df  = nerdamer.diff(fx,'L');
-     console.log (fx.toString())
-     console.log (df.toString());
-    
+     df  = nerdamer.diff(fx,'L');     
       
      /// INICIA O LOOP AQ
 
@@ -35,8 +32,8 @@ function MNewton (fx)
 
       //break;
     }   
-    console.log(x.toString());
    
+   console.log(x);
    return x;
    
 }
@@ -91,41 +88,31 @@ function checkCP (xk,x)
     return result;
 }
 
-function FxLambda(Vx,Vdk,VecLenght)
+function FxLambda(Vx,Vdk)
 {
   
-  VecLenght = 2;
+
   //setando os valores na função
   let scope = 
   {
-     x : 0,
-     y : 3,
+     x : Vx[0],
+     y : Vx[1],
+     z : Vx[2],
+     
 
-     dkx  : 1,
-     dky :  0 
+     dkx : Vdk[0],
+     dky : Vdk[1],
+     dkz : Vdk[2]
+  
 
  
-  }
-  //Vetores do R2
-  if (VecLenght = 2)
-  {
-   //criando os vetores na biblioteca
-   nerdamer.setVar('v1','vector(x,y)');             // x
-   nerdamer.setVar('v2','vector(dkx,dky)');       // dk
-  }
-  //Vetores R3
-  if (VecLenght = 3)
-  {
-   //criando os vetores na biblioteca
-   nerdamer.setVar('v1','vector(x,y,z)');             // x
-   nerdamer.setVar('v2','vector(dkx,dky,dkz)');       // dk
   }
   //Vetores R4
   if (VecLenght = 4)
   {
    //criando os vetores na biblioteca
-   nerdamer.setVar('v1','vector(x,y,z,w)');             // x
-   nerdamer.setVar('v2','vector(dkx,dky,dkz,dkw)');       // d 
+   nerdamer.setVar('v1','vector(x,y,z)');             // x
+   nerdamer.setVar('v2','vector(dkx,dky,dkz)');       // d 
   }
 
 
@@ -157,7 +144,11 @@ function minFx(fx)
     
     fx = MNewton(fx); 
     
-   return fx;  
+
+   
+
+
+   return fx.toFixed(6) ;  
 }
 
 
@@ -178,5 +169,6 @@ function manipula ()
    lambda = minFx(xk);
    console.log(lambda); 
    
+
      
 }
