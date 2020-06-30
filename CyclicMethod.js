@@ -29,21 +29,7 @@ function CyclicMethod()
      
       var minf=[]; 
 
-      /*y1[0] = FxLambda(ponto,dk);
-      console.log(y1[0].toString());
-      lambda[0] = minFx(y1[0]);
       
-      y1[0] = nerdamer(y1[0],{L:lambda[0]});
-      console.log (y1[0].toString());
-      lambda[0] = nerdamer.vecget(y1[0],'0');
-      lambda[1] = nerdamer.vecget(y1[0],'1');
-     
-      dk = [0,1,0,0];
-      y1[0] = FxLambda(lambda,dk);
-      console.log (y1[0].toString());
-      lambda[0] = minFx(y1[0]);
-      y1[0] = nerdamer(y1[0],{L:lambda[0]});
-      console.log (y1[0].toString());*/
 
       do
       {
@@ -54,7 +40,7 @@ function CyclicMethod()
             // montando com lambda
             for (var j = 0 ; j < n ; j++)
             {
-                dk = [0,0,0,0] 
+                dk = [0,0] 
                 dk[j] = 1;         
                 y1[j] = FxLambda(ponto,dk); 
                 console.log (y1[j].toString());       

@@ -33,7 +33,7 @@ function MNewton (fx)
       //break;
     }   
    
-   console.log(x);
+   
    return x;
    
 }
@@ -54,8 +54,7 @@ function TrocaValores (valorx, valory,valorz,valorw)
   {
        x : valorx,
        y : valory,
-       z : valorz,
-       w : valorw
+      
       
   }
 
@@ -63,7 +62,7 @@ function TrocaValores (valorx, valory,valorz,valorw)
    //x : valorx;
    //y : valory;
    var ResultFuncao = nerdamer(funcao,scope);
-   
+ 
    return ResultFuncao;
 }
 
@@ -80,32 +79,24 @@ function checkCP (xk,x)
   }
 
     
-    var result = nerdamer("sqrt((x1)^2 + (x2)^2)",scope).evaluate();
-    // result = parseFloat(result);
-    console.log(result.toString());
-  
-  
+    var result = Number(nerdamer("sqrt((x1)^2 + (x2)^2)").evaluate(scope));
+      
     return result;
 }
 
 function FxLambda(Vx,Vdk)
 {
-  
-
   //setando os valores na função
   let scope = 
   {
      x : Vx[0],
      y : Vx[1],
-     z : Vx[2],
+     
      
 
      dkx : Vdk[0],
      dky : Vdk[1],
-     dkz : Vdk[2]
-  
-
- 
+     
   }
   //Vetores R4
   if (VecLenght = 4)
@@ -113,21 +104,10 @@ function FxLambda(Vx,Vdk)
    //criando os vetores na biblioteca
    nerdamer.setVar('v1','vector(x,y,z)');             // x
    nerdamer.setVar('v2','vector(dkx,dky,dkz)');       // d 
-  }
-
-
-  // F(xk+L) = "x1 + L*(dk)"
-  var result = nerdamer('v1 + L*v2');
-  
+  }  // F(xk+L) = "x1 + L*(dk)"
+  var result = nerdamer('v1 + L*v2');  
   // colocando os pontos na expressão criada
-
   result = nerdamer(result,scope);
-  
-
-
-  
-
-
   return result;
 
 }
@@ -135,23 +115,89 @@ function FxLambda(Vx,Vdk)
 // função para achar o min da expressão passada 
 //IMPLMENTAR COM NEWTONNNN!!!!
 function minFx(fx)
-{
-
-      
+{    
       
    // var funcao =  TrocaValores (nerdamer('vecget (fx,0)'),nerdamer('vecget (fx,1)'),nerdamer('vecget (fx,2)'),nerdamer('vecget (fx,3)'));
      fx = TrocaValores (nerdamer.vecget(fx,'0'),nerdamer.vecget(fx,'1'),nerdamer.vecget(fx,'2'),nerdamer.vecget(fx,'3'));
     
     fx = MNewton(fx); 
-    
 
-   
+   return fx.toFixed(6);  
+}
+
+function solveDk(vetorx,vetory,metodo)
+{
+    console.log(metodo);
+
+  var vecResult = [];
+      if (( metodo == 1))
+      {
+
+          let scope =
+          {
+
+            x : vetorx[0],
+            y : vetorx[1],
+            
+       
+            x1 : vetory[0],
+            y1 : vetory[1],
+            
+          }
+
+          nerdamer.setVar('v1','vector(x,y,z,w)');
+          nerdamer.setVar('v2','vector(x1,y1,z1,w1)');
+
+          var result = nerdamer('v1-v2');
+          var result = nerdamer(result,scope);
+       
+           vecResult[0] = nerdamer.vecget(result,'0');
+           vecResult[1] = nerdamer.vecget(result,'1');
+           vecResult[2] = nerdamer.vecget(result,'2');
+           vecResult[3] = nerdamer.vecget(result,'3');
+           console.log("entroaq");
+           return vecResult;
+
+      }else 
+      // metodo do gradiente dk = - vdfx;
+      if ((metodo == 2))
+      {
+
+         let scope =
+
+         {
+           x2 : vetorx[0],
+           y2 : vetorx[1]
+         }
+
+         nerdamer.setVar ('v3', 'vector(x2,y2)');
+         var result = nerdamer('-1*(v3)');
+         vecResult = nerdamer(result,scope);
+         // vecResult = TransformaArrayExpression(vecResult);
+          return vecResult;
+
+      }
 
 
-   return fx.toFixed(6) ;  
+ 
 }
 
 
+
+
+
+function TransformaArrayExpression(ArrayExpression)
+ {
+
+      var vecResult= [];
+
+      vecResult[0] = Number(nerdamer.vecget(ArrayExpression,'0'));
+      vecResult[1] = Number(nerdamer.vecget(ArrayExpression,'0'));
+
+
+      
+    return vecResult;
+ }
 function manipula ()
 {    
    var funcao = document.getElementById ("InputFuncao").value;
